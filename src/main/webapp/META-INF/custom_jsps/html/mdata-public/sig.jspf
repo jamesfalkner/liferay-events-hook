@@ -1,0 +1,43 @@
+<%@ include file="init.jsp" %>
+
+<%
+    String preSig;
+
+    try {
+        String sigSharedSecret = PrefsPropsUtil.getString("liferay.events.shared.secret", "some hard-to-guess string");
+        String sig = request.getParameter("api_sig");
+        if (Validator.isNull(sig)) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "No signature.");
+            return;
+        }
+        Enumeration<String> params = request.getParameterNames();
+        List<String> paramList = new SortedArrayList<String>(new Comparator<String>() {
+            @Override
+            public int compare(String s, String s2) {
+                return s.compareTo(s2);
+            }
+        });
+
+        while (params.hasMoreElements()) {
+            String nextEl = params.nextElement();
+            if (!"api_sig".equals(nextEl)) {
+                paramList.add(nextEl);
+            }
+        }
+
+        preSig = sigSharedSecret;
+        for (String paramName : paramList) {
+            preSig += (paramName + "=" + request.getParameter(paramName));
+        }
+
+        String shaSig = DigesterUtil.digestHex(Digester.SHA_256, preSig);
+        if (!shaSig.equals(sig)) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Invalid signature.");
+            return;
+        }
+
+    } catch (Exception ex) {
+        response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Error processing signature: " + ex.getLocalizedMessage());
+    }
+
+%>
