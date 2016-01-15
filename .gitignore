@@ -39,3 +39,5 @@ bin/
 *~.nib
 local.properties
 
+# Private files
+/build.properties

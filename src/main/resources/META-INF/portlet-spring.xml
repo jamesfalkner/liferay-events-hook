@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="com.liferay.events.global.mobile.service.EventContactLocalService" class="com.liferay.events.global.mobile.service.impl.EventContactLocalServiceImpl" />
+	<bean id="com.liferay.events.global.mobile.service.EventContactService" class="com.liferay.events.global.mobile.service.impl.EventContactServiceImpl" />
+	<bean id="com.liferay.events.global.mobile.service.persistence.EventContactPersistence" class="com.liferay.events.global.mobile.service.persistence.EventContactPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.events.global.mobile.service.EventPollAnswerLocalService" class="com.liferay.events.global.mobile.service.impl.EventPollAnswerLocalServiceImpl" />
+	<bean id="com.liferay.events.global.mobile.service.EventPollAnswerService" class="com.liferay.events.global.mobile.service.impl.EventPollAnswerServiceImpl" />
+	<bean id="com.liferay.events.global.mobile.service.persistence.EventPollAnswerPersistence" class="com.liferay.events.global.mobile.service.persistence.EventPollAnswerPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.events.global.mobile.service.EventPollQuestionLocalService" class="com.liferay.events.global.mobile.service.impl.EventPollQuestionLocalServiceImpl" />
+	<bean id="com.liferay.events.global.mobile.service.EventPollQuestionService" class="com.liferay.events.global.mobile.service.impl.EventPollQuestionServiceImpl" />
+	<bean id="com.liferay.events.global.mobile.service.persistence.EventPollQuestionPersistence" class="com.liferay.events.global.mobile.service.persistence.EventPollQuestionPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.events.global.mobile.service.GeoCacheLocalService" class="com.liferay.events.global.mobile.service.impl.GeoCacheLocalServiceImpl" />
+	<bean id="com.liferay.events.global.mobile.service.persistence.GeoCachePersistence" class="com.liferay.events.global.mobile.service.persistence.GeoCachePersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.events.global.mobile.service.MatchLocalService" class="com.liferay.events.global.mobile.service.impl.MatchLocalServiceImpl" />
+	<bean id="com.liferay.events.global.mobile.service.MatchService" class="com.liferay.events.global.mobile.service.impl.MatchServiceImpl" />
+	<bean id="com.liferay.events.global.mobile.service.persistence.MatchPersistence" class="com.liferay.events.global.mobile.service.persistence.MatchPersistenceImpl" parent="basePersistence" />
+	<bean id="com.liferay.events.global.mobile.service.MessageLocalService" class="com.liferay.events.global.mobile.service.impl.MessageLocalServiceImpl" />
+	<bean id="com.liferay.events.global.mobile.service.MessageService" class="com.liferay.events.global.mobile.service.impl.MessageServiceImpl" />
+	<bean id="com.liferay.events.global.mobile.service.persistence.MessagePersistence" class="com.liferay.events.global.mobile.service.persistence.MessagePersistenceImpl" parent="basePersistence" />
+</beans>

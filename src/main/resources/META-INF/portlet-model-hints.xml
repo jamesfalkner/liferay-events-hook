@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<hint-collection name="CLOB">
+		<hint name="max-length">2000000</hint>
+	</hint-collection>
+	<model name="com.liferay.events.global.mobile.model.EventContact">
+		<field name="givenName" type="String">
+			<hint name="max-length">256</hint>
+		</field>
+		<field name="fullName" type="String">
+			<hint name="max-length">256</hint>
+		</field>
+		<field name="emailAddress" type="String">
+			<hint name="max-length">256</hint>
+		</field>
+		<field name="city" type="String" />
+		<field name="country" type="String" />
+		<field name="lat" type="double" />
+		<field name="lng" type="double" />
+		<field name="jobTitle" type="String" />
+		<field name="company" type="String">
+			<hint name="max-length">1024</hint>
+		</field>
+		<field name="industry" type="String" />
+		<field name="interests" type="String">
+			<hint name="max-length">20000</hint>
+		</field>
+		<field name="desires" type="String">
+			<hint name="max-length">20000</hint>
+		</field>
+		<field name="expertise" type="String">
+			<hint name="max-length">20000</hint>
+		</field>
+		<field name="attendeeType" type="String" />
+		<field name="interestedIds" type="String">
+			<hint name="max-length">20000</hint>
+		</field>
+		<field name="picUrl" type="String">
+			<hint name="max-length">2000</hint>
+		</field>
+		<field name="eventId" type="String" />
+		<field name="verified" type="boolean" />
+		<field name="eventContactId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+	</model>
+	<model name="com.liferay.events.global.mobile.model.EventPollAnswer">
+		<field name="questionId" type="long" />
+		<field name="clientId" type="String" />
+		<field name="payload" type="String">
+			<hint name="max-length">20000</hint>
+		</field>
+		<field name="answer" type="String">
+			<hint name="max-length">20000</hint>
+		</field>
+		<field name="createDate" type="Date" />
+		<field name="answerId" type="long" />
+	</model>
+	<model name="com.liferay.events.global.mobile.model.EventPollQuestion">
+		<field name="eventId" type="String" />
+		<field name="sponsorName" type="String" />
+		<field name="shortTitle" type="String" />
+		<field name="question" type="String">
+			<hint name="max-length">20000</hint>
+		</field>
+		<field name="questionType" type="String" />
+		<field name="choices" type="String">
+			<hint name="max-length">20000</hint>
+		</field>
+		<field name="anonymousResults" type="boolean" />
+		<field name="showResponseCount" type="boolean" />
+		<field name="chartType" type="String" />
+		<field name="askForId" type="boolean" />
+		<field name="idIntro" type="String">
+			<hint name="max-length">5000</hint>
+		</field>
+		<field name="createDate" type="Date" />
+		<field name="enabled" type="boolean" />
+		<field name="autoEnable" type="boolean" />
+		<field name="enableTriggerDate" type="Date" />
+		<field name="enableTriggerTimezone" type="String" />
+		<field name="picUrl" type="String">
+			<hint name="max-length">20000</hint>
+		</field>
+		<field name="questionId" type="long" />
+	</model>
+	<model name="com.liferay.events.global.mobile.model.GeoCache">
+		<field name="address" type="String" />
+		<field name="lat" type="double" />
+		<field name="lng" type="double" />
+		<field name="geoCacheId" type="long" />
+		<field name="createDate" type="Date" />
+	</model>
+	<model name="com.liferay.events.global.mobile.model.Match">
+		<field name="contactId1" type="long" />
+		<field name="contactId2" type="long" />
+		<field name="eventId" type="String" />
+		<field name="matchId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+	</model>
+	<model name="com.liferay.events.global.mobile.model.Message">
+		<field name="fromId" type="long" />
+		<field name="toId" type="long" />
+		<field name="content" type="String">
+			<hint name="max-length">20000</hint>
+		</field>
+		<field name="read" type="boolean" />
+		<field name="eventId" type="String" />
+		<field name="messageId" type="long" />
+		<field name="groupId" type="long" />
+		<field name="companyId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createDate" type="Date" />
+		<field name="modifiedDate" type="Date" />
+	</model>
+</model-hints>

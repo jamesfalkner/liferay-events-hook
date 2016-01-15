@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd">
+	<persistence-unit-metadata>
+		<xml-mapping-metadata-complete/>
+		<persistence-unit-defaults>
+			<access>PROPERTY</access>
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<mapped-superclass class="com.liferay.events.global.mobile.model.impl.EventContactModelImpl">
+		<attributes>
+			<id name="eventContactId" />
+			<basic name="givenName" />
+			<basic name="fullName" />
+			<basic name="emailAddress" />
+			<basic name="city" />
+			<basic name="country" />
+			<basic name="lat" />
+			<basic name="lng" />
+			<basic name="jobTitle" />
+			<basic name="company" />
+			<basic name="industry" />
+			<basic name="interests" />
+			<basic name="desires" />
+			<basic name="expertise" />
+			<basic name="attendeeType" />
+			<basic name="interestedIds" />
+			<basic name="picUrl" />
+			<basic name="eventId" />
+			<basic name="verified" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.events.global.mobile.model.impl.EventPollAnswerModelImpl">
+		<attributes>
+			<id name="answerId" />
+			<basic name="questionId" />
+			<basic name="clientId" />
+			<basic name="payload" />
+			<basic name="answer" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.events.global.mobile.model.impl.EventPollQuestionModelImpl">
+		<attributes>
+			<id name="questionId" />
+			<basic name="eventId" />
+			<basic name="sponsorName" />
+			<basic name="shortTitle" />
+			<basic name="question" />
+			<basic name="questionType" />
+			<basic name="choices" />
+			<basic name="anonymousResults" />
+			<basic name="showResponseCount" />
+			<basic name="chartType" />
+			<basic name="askForId" />
+			<basic name="idIntro" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="enabled" />
+			<basic name="autoEnable" />
+			<basic name="enableTriggerDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="enableTriggerTimezone" />
+			<basic name="picUrl" />
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.events.global.mobile.model.impl.GeoCacheModelImpl">
+		<attributes>
+			<id name="geoCacheId" />
+			<basic name="address" />
+			<basic name="lat" />
+			<basic name="lng" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.events.global.mobile.model.impl.MatchModelImpl">
+		<attributes>
+			<id name="matchId" />
+			<basic name="contactId1" />
+			<basic name="contactId2" />
+			<basic name="eventId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<mapped-superclass class="com.liferay.events.global.mobile.model.impl.MessageModelImpl">
+		<attributes>
+			<id name="messageId" />
+			<basic name="fromId" />
+			<basic name="toId" />
+			<basic name="content" />
+			<basic name="read">
+				<column name="READ_" />
+			</basic>
+			<basic name="eventId" />
+			<basic name="groupId" />
+			<basic name="companyId" />
+			<basic name="userId" />
+			<basic name="userName" />
+			<basic name="createDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<basic name="modifiedDate">
+				<temporal>TIMESTAMP</temporal>
+			</basic>
+			<transient name="modelAttributes" />
+			<transient name="primaryKey" />
+			<transient name="primaryKeyObj" />
+			<transient name="userUuid" />
+		</attributes>
+	</mapped-superclass>
+	<entity class="com.liferay.events.global.mobile.model.impl.EventContactImpl" name="EventContact">
+		<table name="Matcher_EventContact" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.events.global.mobile.model.impl.EventPollAnswerImpl" name="EventPollAnswer">
+		<table name="Matcher_EventPollAnswer" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.events.global.mobile.model.impl.EventPollQuestionImpl" name="EventPollQuestion">
+		<table name="Matcher_EventPollQuestion" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.events.global.mobile.model.impl.GeoCacheImpl" name="GeoCache">
+		<table name="Matcher_GeoCache" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.events.global.mobile.model.impl.MatchImpl" name="Match">
+		<table name="Matcher_Match" />
+		<attributes />
+	</entity>
+	<entity class="com.liferay.events.global.mobile.model.impl.MessageImpl" name="Message">
+		<table name="Matcher_Message" />
+		<attributes />
+	</entity>
+</entity-mappings>

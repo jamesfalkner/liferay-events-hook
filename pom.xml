@@ -30,6 +30,9 @@
 		    <encoding>UTF-8</encoding>
 		    <source>1.6</source>
 		    <target>1.6</target>
+		    <fork>true</fork>
+		    <meminitial>2048m</meminitial>
+		    <maxmem>4096m</maxmem>
 		</configuration>
 	    </plugin>
 	    <plugin>
@@ -39,7 +42,34 @@
 		    <encoding>UTF-8</encoding>
 		</configuration>
 	    </plugin>
+	    <plugin>
+		<groupId>org.codehaus.mojo</groupId>
+		<artifactId>properties-maven-plugin</artifactId>
+		<version>1.0.0</version>
+		<executions>
+		    <execution>
+			<phase>initialize</phase>
+			<goals>
+			    <goal>read-project-properties</goal>
+			</goals>
+			<configuration>
+			    <files>
+				<file>${basedir}/build.properties</file>
+			    </files>
+			</configuration>
+		    </execution>
+		</executions>
+	    </plugin>
+
 	</plugins>
+	<resources>
+	    <!-- Filter resource files -->
+	    <resource>
+		<directory>src/main/resources</directory>
+		<filtering>true</filtering>
+	    </resource>
+	</resources>
+
     </build>
     <dependencies>
 	<dependency>
@@ -50,7 +80,19 @@
 	</dependency>
 	<dependency>
 	    <groupId>com.liferay.portal</groupId>
+	    <artifactId>util-bridges</artifactId>
+	    <version>${liferay.version}</version>
+	    <scope>provided</scope>
+	</dependency>
+	<dependency>
+	    <groupId>com.liferay.portal</groupId>
 	    <artifactId>util-java</artifactId>
+	    <version>${liferay.version}</version>
+	    <scope>provided</scope>
+	</dependency>
+	<dependency>
+	    <groupId>com.liferay.portal</groupId>
+	    <artifactId>util-taglib</artifactId>
 	    <version>${liferay.version}</version>
 	    <scope>provided</scope>
 	</dependency>
@@ -73,6 +115,12 @@
 	    <scope>provided</scope>
 	</dependency>
 	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>jstl</artifactId>
+	    <version>1.2</version>
+	    <scope>provided</scope>
+	</dependency>
+	<dependency>
 	    <groupId>javax.mail</groupId>
 	    <artifactId>javax.mail-api</artifactId>
 	    <version>1.5.2</version>
@@ -84,5 +132,54 @@
 	    <version>3.2.1</version>
 	    <scope>provided</scope>
 	</dependency>
+	<dependency>
+	    <groupId>commons-httpclient</groupId>
+	    <artifactId>commons-httpclient</artifactId>
+	    <version>3.1</version>
+	    <scope>provided</scope>
+	</dependency>
+	<dependency>
+	    <groupId>commons-lang</groupId>
+	    <artifactId>commons-lang</artifactId>
+	    <version>2.6</version>
+	    <scope>provided</scope>
+	</dependency>
+	<dependency>
+	    <groupId>com.google.code.geocoder-java</groupId>
+	    <artifactId>geocoder-java</artifactId>
+	    <version>0.16</version>
+	    <scope>compile</scope>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.lucene</groupId>
+	    <artifactId>lucene-core</artifactId>
+	    <version>3.5.0</version>
+	    <scope>provided</scope>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.lucene</groupId>
+	    <artifactId>lucene-analyzers</artifactId>
+	    <version>3.5.0</version>
+	    <scope>provided</scope>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.poi</groupId>
+	    <artifactId>poi</artifactId>
+	    <version>3.12</version>
+	    <scope>compile</scope>
+	</dependency>
+	<dependency>
+	    <groupId>org.apache.poi</groupId>
+	    <artifactId>poi-ooxml</artifactId>
+	    <version>3.12</version>
+	    <scope>compile</scope>
+	</dependency>
+	<dependency>
+	    <groupId>com.opencsv</groupId>
+	    <artifactId>opencsv</artifactId>
+	    <version>3.4</version>
+	    <scope>compile</scope>
+	</dependency>
     </dependencies>
+
 </project>

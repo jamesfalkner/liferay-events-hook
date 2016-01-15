@@ -1,0 +1,10 @@
+# Copy this file to build.properties and make changes as needed
+
+# The shared, hard-to-guess secret used to sign JSONWS API calls
+liferay.events.shared.secret=something-hard-to-guess
+
+# How often to check to see if poll questions that are auto-enabled are ready to be enabled
+polls.question.autoenable.interval=15
+
+# Google goo.gl URL shortener API key
+liferay.events.goo.gl.api.key=

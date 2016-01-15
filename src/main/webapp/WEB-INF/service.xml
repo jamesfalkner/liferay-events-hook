@@ -1,0 +1,223 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<!--
+	Copyright 2016 Liferay, Inc. All rights reserved.
+	http://www.liferay.com
+
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+-->
+
+<service-builder package-path="com.liferay.events.global.mobile">
+    <author>James Falkner</author>
+    <namespace>Matcher</namespace>
+
+    <entity name="EventContact" local-service="true" remote-service="true">
+
+	<column name="givenName" type="String"/>
+	<column name="fullName" type="String"/>
+	<column name="emailAddress" json-enabled="false" type="String"/>
+	<column name="city" type="String"/>
+	<column name="country" type="String"/>
+	<column name="lat" type="double"/>
+	<column name="lng" type="double"/>
+	<column name="jobTitle" type="String"/>
+	<column name="company" type="String"/>
+	<column name="industry" type="String"/>
+	<column name="interests"  type="String"/>
+	<column name="desires"  type="String"/>
+	<column name="expertise"  type="String"/>
+	<column name="attendeeType"  type="String"/>
+	<column name="interestedIds"  json-enabled="false" type="String"/>
+	<column name="picUrl" type="String"/>
+	<column name="eventId" type="String"/>
+	<column name="verified" json-enabled="false" type="boolean"/>
+
+	<!-- PK fields -->
+
+	<column name="eventContactId" type="long" primary="true"/>
+
+	<!-- Group instance -->
+
+	<column name="groupId" type="long"/>
+
+	<!-- Audit fields -->
+
+	<column name="companyId" type="long"/>
+	<column name="userId" type="long"/>
+	<column name="userName" type="String"/>
+	<column name="createDate" type="Date"/>
+	<column name="modifiedDate" type="Date"/>
+	<finder name="E_V" return-type="EventContact">
+	    <finder-column name="eventContactId" />
+	    <finder-column name="verified" />
+	</finder>
+	<finder name="EmailAddress_E_V" return-type="EventContact">
+	    <finder-column name="eventId"/>
+	    <finder-column name="emailAddress"/>
+	    <finder-column name="verified"/>
+	</finder>
+	<finder name="EmailAddress_E" return-type="EventContact">
+	    <finder-column name="eventId"/>
+	    <finder-column name="emailAddress"/>
+	</finder>
+
+	<finder name="NotInterested_E_V" return-type="Collection">
+	    <finder-column name="eventId"/>
+	    <finder-column name="verified"/>
+	    <finder-column name="eventContactId" arrayable-operator="AND" comparator="!=" />
+	</finder>
+
+    </entity>
+
+    <entity name="Match" local-service="true" remote-service="true">
+
+	<column name="contactId1" type="long"/>
+	<column name="contactId2" type="long"/>
+	<column name="eventId" type="String"/>
+
+	<!-- PK fields -->
+
+	<column name="matchId" type="long" primary="true"/>
+
+	<!-- Group instance -->
+
+	<column name="groupId" type="long"/>
+
+	<!-- Audit fields -->
+
+	<column name="companyId" type="long"/>
+	<column name="userId" type="long"/>
+	<column name="userName" type="String"/>
+	<column name="createDate" type="Date"/>
+	<column name="modifiedDate" type="Date"/>
+
+	<finder name="ID1_E" return-type="Collection">
+	    <finder-column name="eventId"/>
+	    <finder-column name="contactId1"/>
+	</finder>
+	<finder name="ID2_E" return-type="Collection">
+	    <finder-column name="eventId"/>
+	    <finder-column name="contactId2"/>
+	</finder>
+
+    </entity>
+
+    <entity name="Message" local-service="true" remote-service="true">
+
+	<column name="fromId" type="long"/>
+	<column name="toId" type="long"/>
+	<column name="content" type="String"/>
+	<column name="read" json-enabled="false"  type="boolean"/>
+	<column name="eventId" type="String"/>
+
+	<!-- PK fields -->
+
+	<column name="messageId" type="long" primary="true"/>
+
+	<!-- Group instance -->
+
+	<column name="groupId" type="long"/>
+
+	<!-- Audit fields -->
+
+	<column name="companyId" type="long"/>
+	<column name="userId" type="long"/>
+	<column name="userName" type="String"/>
+	<column name="createDate" type="Date"/>
+	<column name="modifiedDate" type="Date"/>
+
+	<finder name="TargetContactId_E" return-type="Collection">
+	    <finder-column name="eventId"/>
+	    <finder-column name="toId"/>
+	</finder>
+
+    </entity>
+    <entity name="GeoCache" local-service="true" remote-service="false">
+
+	<column name="address" type="String"/>
+	<column name="lat" type="double"/>
+	<column name="lng" type="double"/>
+
+	<column name="geoCacheId" type="long" primary="true"/>
+
+	<column name="createDate" type="Date"/>
+
+	<finder name="GeoByAddress" return-type="GeoCache">
+	    <finder-column name="address"/>
+	</finder>
+
+    </entity>
+    <entity name="EventPollQuestion" local-service="true" remote-service="true">
+
+	<column name="eventId" type="String"/>
+	<column name="sponsorName" type="String"/>
+	<column name="shortTitle" type="String"/>
+	<column name="question" type="String"/>
+	<column name="questionType" type="String"/>
+	<column name="choices" type="String"/>
+	<column name="anonymousResults" type="boolean"/>
+	<column name="showResponseCount" type="boolean"/>
+	<column name="chartType" type="String"/>
+	<column name="askForId" type="boolean"/>
+	<column name="idIntro" type="String"/>
+	<column name="createDate" type="Date"/>
+	<column name="enabled" type="boolean"/>
+	<column name="autoEnable" type="boolean"/>
+	<column name="enableTriggerDate" type="Date" />
+	<column name="enableTriggerTimezone" type="String" />
+	<column name="picUrl" type="String"/>
+
+
+	<!-- PK fields -->
+	<column name="questionId" type="long" primary="true"/>
+
+
+	<finder name="EventPollQuestion_A_E_D" return-type="Collection">
+	    <finder-column name="autoEnable"/>
+	    <finder-column name="enabled"/>
+	    <finder-column name="enableTriggerDate" comparator="&lt;=" />
+	</finder>
+	<finder name="EventPollQuestion_E" return-type="Collection">
+	    <finder-column name="eventId"/>
+	</finder>
+	<finder name="EventPollQuestion_E_E" return-type="Collection">
+	    <finder-column name="eventId"/>
+	    <finder-column name="enabled"/>
+	</finder>
+
+    </entity>
+    <entity name="EventPollAnswer" local-service="true" remote-service="true">
+
+	<column name="questionId" type="long"/>
+	<column name="clientId" type="String"/>
+	<column name="payload" type="String"/>
+	<column name="answer" type="String"/>
+	<column name="createDate" type="Date"/>
+
+
+	<!-- PK fields -->
+	<column name="answerId" type="long" primary="true"/>
+
+
+	<finder name="EventPollAnswer_Q" return-type="Collection">
+	    <finder-column name="questionId"/>
+	</finder>
+	<finder name="EventPollAnswer_Q_C" return-type="Collection">
+	    <finder-column name="questionId"/>
+	    <finder-column name="clientId"/>
+	</finder>
+
+
+    </entity>
+</service-builder>

@@ -13,14 +13,14 @@ Here is an example command line to build and deploy the hook to your Liferay ins
 
 ```bash
     cd liferay-events-hook
-    mvn -Pliferay62ga4 package liferay:deploy
+    mvn -Pliferay62ga4 clean package liferay:deploy
 ```
 
 There are some security things to know about (see the *Read/write data security* section below for details).
 Part of its security relies on a *shared secret* which is shared between the mobile app (in your `tiapp.xml` file) and in the Liferay Events Hook.
-You will need to ensure they match, by configuring the `liferay.json_shared_secret` to be the same as that which you configure in Liferay using the
-`liferay.events.shared.secret` portal property. To set this value, create a `portal-ext.properties` file in your *Liferay Home* directory, and add
-the line `liferay.events.shared.secret=some-difficult-to-guess-string` and ensure that string matches the one in the `tiapp.xml` file.
+You will need to ensure they match, by configuring your `build.properties` to be the same as that which you configure in Liferay using the
+`liferay.events.shared.secret` portal property. To set this value, copy the `build.properties.template` file to `build.properties` and add
+the secret.
 
 The hook creates several *public* endpoints that are anonymously accessible, and several *private* endpoints requiring Basic Authentication to access. It will be accessible to any registered user on your Liferay instance, but that can be tuned with more advanced Liferay configuration and the `web.xml` file that is out of scope for this doc.
 
@@ -32,8 +32,7 @@ The Liferay Events Hook is currently designed to store its content in Liferay's 
 you can visualize the result by using your browser to visit the `/html/mdata-private` pages. For example, if you installed the Liferay Events Hook to a server called *company.com* on TCP port *8080*, to see the result of users using the "Add to my Agenda" session favoriting feature, you would navigate to `http://company.com:8080/html/mdata-private/liferay-favorites-service-view.jsp`.
 Note that due to the configuration in the hook's `web.xml`, access to the `/mdata-private/` directory requires HTTP Basic Authentication, so your browser will ask you for a username and password, which is the same as what you would use to log into the Liferay server (it is adviseable to configure Liferay to require HTTPS).
 
-The Liferay Events Hook "web services" are simple JSP pages. While this is not the optimal way to create writable web services, it is quick and easy. Better solutions are welcome!
-
+The Liferay Events Hook "web services" are simple JSP pages and Liferay JSONWS services via ServiceBuilder.
 Note that several of the JSPs make external references via `<script>` includes to various 3rd-party JavaScript libraries. You should be connected to the internet so that these libraries can be downloaded (you can also modify the hook yourself to use local copies of the libraries if you wish).
 
 ## Read/write data security
@@ -64,7 +63,7 @@ Just send pull requests! Also, ensure your code is bug-free, well-tested, archit
 
 # Copyright and License
 
-    Copyright (c) 2015, Liferay Inc. All rights reserved.
+    Copyright (c) 2016, Liferay Inc. All rights reserved.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

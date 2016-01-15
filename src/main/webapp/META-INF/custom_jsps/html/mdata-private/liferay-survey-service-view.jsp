@@ -1,3 +1,22 @@
+<%--
+/**
+ * Copyright 2016 Liferay, Inc. All rights reserved.
+ * http://www.liferay.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+--%>
+<%@ page import="com.liferay.portlet.dynamicdatalists.model.DDLRecordSet" %>
 <%@ include file="init.jsp" %>
 
 <h1>Liferay Events Mobile App Surveys</h1>
@@ -49,13 +68,16 @@
 
     final Set<String> allBeaconFormIds = new HashSet<String>();
 
-    for (DDLRecord record : DDLRecordSetLocalServiceUtil.getDDLRecordSet(33511).getRecords()) {
-        String eid = GetterUtil.getString(record.getFieldValue("event_id"));
-        if (eid.equalsIgnoreCase(event)) {
-            allBeaconFormIds.addAll(Arrays.asList(GetterUtil.getString(record.getFieldValue("all_form_ids")).split(",")));
+    DDLRecordSet recordSet = DDLRecordSetLocalServiceUtil.fetchDDLRecordSet(20906);
+
+    if (Validator.isNotNull(recordSet)) {
+        for (DDLRecord record : recordSet.getRecords()) {
+            String eid = GetterUtil.getString(record.getFieldValue("event_id"));
+            if (eid.equalsIgnoreCase(event)) {
+                allBeaconFormIds.addAll(Arrays.asList(GetterUtil.getString(record.getFieldValue("all_form_ids")).split(",")));
+            }
         }
     }
-
 
     if (deleteAll != null) {
         ExpandoValueLocalServiceUtil.deleteTableValues(table.getTableId());
@@ -94,7 +116,6 @@
             public boolean evaluate(Object input) {
                 try {
                     String sid = ExpandoValueLocalServiceUtil.getData(companyId, className, event, surveyIdCol, ((ExpandoRow) input).getClassPK(), "foo");
-                    System.out.println("sid: " + sid);
                     return (!allBeaconFormIds.contains(sid));
                 } catch (Exception ex) {
                     return true;

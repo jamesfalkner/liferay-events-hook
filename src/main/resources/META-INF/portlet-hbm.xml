@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping default-lazy="false" auto-import="false">
+	<import class="com.liferay.events.global.mobile.model.EventContact" />
+	<import class="com.liferay.events.global.mobile.model.EventPollAnswer" />
+	<import class="com.liferay.events.global.mobile.model.EventPollQuestion" />
+	<import class="com.liferay.events.global.mobile.model.GeoCache" />
+	<import class="com.liferay.events.global.mobile.model.Match" />
+	<import class="com.liferay.events.global.mobile.model.Message" />
+	<class name="com.liferay.events.global.mobile.model.impl.EventContactImpl" table="Matcher_EventContact">
+		<cache usage="read-write" />
+		<id name="eventContactId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="givenName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="fullName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="emailAddress" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="city" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="country" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lat" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="lng" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="jobTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="company" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="industry" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="interests" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="desires" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="expertise" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="attendeeType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="interestedIds" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="picUrl" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="eventId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="verified" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.liferay.events.global.mobile.model.impl.EventPollAnswerImpl" table="Matcher_EventPollAnswer">
+		<cache usage="read-write" />
+		<id name="answerId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="questionId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="clientId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="payload" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="answer" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.liferay.events.global.mobile.model.impl.EventPollQuestionImpl" table="Matcher_EventPollQuestion">
+		<cache usage="read-write" />
+		<id name="questionId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="eventId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="sponsorName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="shortTitle" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="question" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="questionType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="choices" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="anonymousResults" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="showResponseCount" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="chartType" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="askForId" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="idIntro" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="enabled" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="autoEnable" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
+		<property name="enableTriggerDate" type="org.hibernate.type.TimestampType" />
+		<property name="enableTriggerTimezone" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="picUrl" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+	</class>
+	<class name="com.liferay.events.global.mobile.model.impl.GeoCacheImpl" table="Matcher_GeoCache">
+		<cache usage="read-write" />
+		<id name="geoCacheId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="address" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="lat" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="lng" type="com.liferay.portal.dao.orm.hibernate.DoubleType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.liferay.events.global.mobile.model.impl.MatchImpl" table="Matcher_Match">
+		<cache usage="read-write" />
+		<id name="matchId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="contactId1" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="contactId2" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="eventId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+	</class>
+	<class name="com.liferay.events.global.mobile.model.impl.MessageImpl" table="Matcher_Message">
+		<cache usage="read-write" />
+		<id name="messageId" type="long">
+			<generator class="assigned" />
+		</id>
+		<property name="fromId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="toId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="content" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="read" type="com.liferay.portal.dao.orm.hibernate.BooleanType" column="read_" />
+		<property name="eventId" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="groupId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="companyId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userId" type="com.liferay.portal.dao.orm.hibernate.LongType" />
+		<property name="userName" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="createDate" type="org.hibernate.type.TimestampType" />
+		<property name="modifiedDate" type="org.hibernate.type.TimestampType" />
+	</class>
+</hibernate-mapping>

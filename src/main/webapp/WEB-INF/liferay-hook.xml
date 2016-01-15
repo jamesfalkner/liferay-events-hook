@@ -2,6 +2,8 @@
 <!DOCTYPE hook PUBLIC "-//Liferay//DTD Hook 6.2.0//EN" "http://www.liferay.com/dtd/liferay-hook_6_2_0.dtd">
 
 <hook>
+        <portal-properties>portlet.properties</portal-properties>
+        <language-properties>content/Language*.properties</language-properties>
         <custom-jsp-dir>/META-INF/custom_jsps</custom-jsp-dir>
         <servlet-filter>
                 <servlet-filter-name>mdata Servlet Filter</servlet-filter-name>

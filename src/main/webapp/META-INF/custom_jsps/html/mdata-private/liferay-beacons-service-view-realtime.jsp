@@ -1,3 +1,21 @@
+<%--
+/**
+ * Copyright 2016 Liferay, Inc. All rights reserved.
+ * http://www.liferay.com
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+--%>
 <%@ include file="init.jsp" %>
 
 
@@ -41,7 +59,6 @@ try {
                 }
             }
 
-            System.out.println("using this for raw: " + dateStamps);
 
             if (dateStamps.isEmpty()) {
                 %> [] <%
@@ -63,10 +80,6 @@ try {
             long firstDate = dateStamps.get(0).getDate().getTime();
             long lastDate = dateStamps.get(dateStamps.size() - 1).getDate().getTime();
             long lastBucket = (lastDate - firstDate) / (5 * 1000);
-
-            System.out.println("firstDate : " + dateStamps.get(0).getDate() +
-                    " lastDate: " + dateStamps.get(dateStamps.size() - 1).getDate() +
-                    " lastBucket: " + lastBucket);
 
             // [RegionName, [TimeBucket, [id, id, id, id]]]
             Map<String, Map<Long, Set<String>>> regionPings = new HashMap<String, Map<Long, Set<String>>>();
@@ -105,7 +118,6 @@ try {
                 }
             }
 
-            System.out.println("json'ing map: " + regionPings);
             // [RegionName, [TimeBucket, [id, id, id, id]]]
 
             JSONArray result = JSONFactoryUtil.createJSONArray();
@@ -124,7 +136,6 @@ try {
                 regRes.put("regionPoints", points);
                 result.put(regRes);
             }
-            System.out.println("sending result: " + result.toString());
             %> <%= result %> <%
             return;
 
@@ -179,21 +190,16 @@ try {
         $.ajax({
             url: '/html/mdata-private/liferay-beacons-service-view-realtime.jsp?event=<%= HtmlUtil.escapeURL(event) %>&timeSince=' + lastTimeFetched,
             dataType: 'json',
-            
+
             success: function(seriesArr) {
                 var now = new Date();
 
-                console.log("now: " + now.getTime() + " success! SERIESARR has " + seriesArr.length + " series objects");
 
                 seriesArr.forEach(function(seriesObj) {
-                    console.log("seriesObj " + seriesObj.regionName + " has " + seriesObj.regionPoints.length + " points");
                     var series = chart.get(seriesObj.regionName);
-                    console.log("adding points to series: " + series.name +": " + JSON.stringify(seriesObj.regionPoints));
                     seriesObj.regionPoints.forEach(function(point) {
                         if (point[0] >= lastTimeFetched && point[0] <= now.getTime()) {
-                            console.log("added point " + JSON.stringify(point) + " at x val: " + new Date(point[0]));
                             var shi = false;
-                            console.log("length: " + series.data.length + " shi is: " + shi);
                             if (series.data.length > 20) {
                                 shi = true;
                             }
